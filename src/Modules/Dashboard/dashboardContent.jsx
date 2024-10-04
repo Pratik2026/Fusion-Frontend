@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from "react";
-import axios from "axios"; // Import axios
-import Breadcrumbs from "../../components/Breadcrumbs";
-import DashBoardNotifications from "./dashboardNotifications.jsx";
-import { dashboardRoute } from "../../helper/api_routes.jsx";
 import { Button, Flex, Tabs, Text } from "@mantine/core";
 import { CaretCircleLeft, CaretCircleRight } from "@phosphor-icons/react";
-import classes from "./Dashboard.module.css";
-import { setRoles, setUserName, setAccessibleModules } from "../../redux/userslice.jsx";
+import axios from "axios"; // Import axios
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import _Breadcrumbs from "../../components/Breadcrumbs";
+import { dashboardRoute } from "../../helper/api_routes.jsx";
+import { setAccessibleModules, setRoles, setUserName } from "../../redux/userslice.jsx";
+import classes from "./Dashboard.module.css";
+import DashBoardNotifications from "./dashboardNotifications.jsx";
 
 const Dashboard = () => {
   const [notificationsList, setNotificationsList] = useState(null);
@@ -43,7 +43,7 @@ const Dashboard = () => {
               (item) =>
                 !JSON.parse(item.data.replace(/'/g, '"'))?.flag ||
                 JSON.parse(item.data.replace(/'/g, '"'))?.flag !==
-                  "announcement"
+                "announcement"
             );
             const filteredAnnouncements = notificationsList.filter(
               (item) =>
@@ -107,7 +107,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Breadcrumbs />
+      <_Breadcrumbs />
       <Flex
         justify="flex-start"
         align="center"

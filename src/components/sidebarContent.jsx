@@ -34,7 +34,8 @@ import {
 import IIITLOGO from "../assets/IIITJ_logo.webp";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentModule } from "../redux/moduleslice";
 
 const Modules = [
   { label: "Home", id:"home", icon: <HomeIcon size={18} /> },
@@ -66,6 +67,7 @@ const otherItems = [
 ];
 
 const SidebarContent = ({ isCollapsed, toggleSidebar }) => {
+  const dispatch = useDispatch();
   const [hover, setHover] = useState(null);
   const [selected, setSelected] = useState(null);
   const [filteredModules, setFilteredModules] = useState([]);
@@ -80,6 +82,7 @@ const SidebarContent = ({ isCollapsed, toggleSidebar }) => {
   const handleModuleClick = (itemlabel) => {
     setSelected(itemlabel);
     toggleSidebar();
+    dispatch(setCurrentModule(itemlabel)); // Dispatch the selected module to redux
   };
 
   return (
