@@ -10,6 +10,7 @@ const _Breadcrumbs = () => {
       {item.title}
     </Text>
   ))
+
   return (
     <>
       <Breadcrumbs
